@@ -7,17 +7,17 @@ router.get("/books", async (req, res) => {
   try {
     const books = await Book.find();
     res.send(books)
-  } catch(err) {
-    return res.status(500).json({ message: err.message });
+  } catch(error) {
+    return res.status(500).json({ message: error.message });
   }
 })
 // Get one book
-router.get("/book/:id", async (req, res) => {
+router.get("/books/:id", async (req, res) => {
   try {
     const book = await Book.findById({ _id: req.params.id });
     res.send(book)
-  } catch(err) {
-    return res.status(500).json({ message: err.message });
+  } catch(error) {
+    return res.status(500).json({ message: error.message });
   }
 })
 
@@ -26,22 +26,22 @@ router.post("/books", async (req, res) => {
   const book = new Book({
     title: req.body.title,
     author: req.body.author,
-    published: req.body.year,
+    published: req.body.published,
     genre: req.body.genre
   });
   try {
     const newBook = await book.save();
     res.status(201).json({ newBook });
-  } catch(err) {
-    return res.status(500).json({ message: err.message });
+  } catch(error) {
+    return res.status(500).json({ message: error.message });
   }
 })
 
 // Delete book
-router.delete("/books", async (req, res) => {
-  await Book.deleteOne({title: req.body.title}, (err, result) => {
-    if (err) {
-      return res.status(500).json({ message: err.message });
+router.delete("/books/:id", async (req, res) => {
+  await Book.deleteOne({_id: req.params.id}, (error, result) => {
+    if (error) {
+      return res.status(500).json({ message: error.message });
     } else {
       res.status(200).json(result);
     }
@@ -50,9 +50,9 @@ router.delete("/books", async (req, res) => {
 
 // Update book by id
 router.put("/books/:id", async (req, res) => {
-  await Book.findOneAndUpdate({ _id: req.params.id }, req.body, {new: true}, (err, result) => { 
-    if (err) { 
-      return res.status(500).json({ message: err.message });
+  await Book.findOneAndUpdate({ _id: req.params.id }, req.body, {new: true}, (error, result) => { 
+    if (error) { 
+      return res.status(500).json({ message: error.message });
     } 
     else { 
       res.status(200).json({ result });
