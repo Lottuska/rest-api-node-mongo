@@ -6,5 +6,5 @@ Endpoints for
 - get all items
 - get one item by id
 - add a new item
-- delete one item
+- delete one item by id
 - update one item by id
