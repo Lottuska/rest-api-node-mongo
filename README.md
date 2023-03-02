@@ -1,6 +1,6 @@
-# RESTful CRUD API with Node.js
+# REST CRUD API with Node.js
 
-Basic RESTful CRUD API example with Node.js, Express.js and MongoDB.
+Basic REST CRUD API example with Node.js, Express.js and MongoDB.
 
 Endpoints for
 - get all items
